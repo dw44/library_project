@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Library</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+
+        <main>
+            <section id="library">
+                <div class="library-item">
+                    <h1>Title: The C Programming Language</h1>
+                    <p>Author: Brian Kernighan</p>
+                    <p>Pages: 288</p>
+                    <p>Read: No</p>
+                </div>
+            </section>
+
+            <section id="add-book">
+                <form id="new-book">
+                    <input id="enter-name" placeholder="Title" type="text" />
+                    <input id="enter-author" placeholder="Author" type="text" />
+                    <input id="enter-pages" placeholder="Page Count" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' />
+                    <div id="read-status">
+                        <label>Yes</label>
+                        <input type="radio" id="read-yes" name="read" value="true"/>
+                        <br>
+                        <label>No</label>
+                        <input type="radio" id="read-no" name="read" value="false"/>
+                    </div>
+                    <button id="submit-book">Submit Book</button>
+                </form>
+            </section>
+
+        </main>
+
+        <script src="./logic.js"></script>
+
+    </body>
+</html>
