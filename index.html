@@ -9,31 +9,27 @@
     <body>
 
         <main>
-            <section id="library">
-                <div class="library-item">
-                    <h1>Title: The C Programming Language</h1>
-                    <p>Author: Brian Kernighan</p>
-                    <p>Pages: 288</p>
-                    <p>Read: No</p>
-                </div>
-            </section>
-
             <section id="add-book">
-                <form id="new-book">
-                    <input id="enter-name" placeholder="Title" type="text" />
-                    <input id="enter-author" placeholder="Author" type="text" />
-                    <input id="enter-pages" placeholder="Page Count" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' />
+                <form id="new-book" onsubmit="return false">
+                    <input required id="enter-name" placeholder="Title" type="text" />
+                    <input required id="enter-author" placeholder="Author" type="text" />
+                    <input required id="enter-pages" placeholder="Page Count" type="number" min="1" />
                     <div id="read-status">
                         <label>Yes</label>
-                        <input type="radio" id="read-yes" name="read" value="true"/>
+                        <input type="radio" id="read-yes" name="read" value="true" />
                         <br>
                         <label>No</label>
-                        <input type="radio" id="read-no" name="read" value="false"/>
+                        <input type="radio" id="read-no" name="read" value="false" checked />
                     </div>
                     <button id="submit-book">Submit Book</button>
+                    <!-- <button id="show-store">Show Storage</button> -->
                 </form>
             </section>
-
+            
+            <section id="library">
+                <!-- Book cards go here -->
+            </section>            
+            
         </main>
 
         <script src="./logic.js"></script>

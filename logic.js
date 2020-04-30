@@ -1,49 +1,100 @@
-const library = [
-    {title: 'DOM Enlightenment', author: 'Cody Lindley', pages: 180, read: true},
-    {title: 'Eloquent JavaScript', author: 'Marijn Haverbeke', pages: 425, read: false}
-];
-
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.info = () => `${this.title} by ${this.author}, ${this.pages} pages, ${read ? 'read' : 'not read yet'}.`;
-}
-
-function addBookToLibrary(title, author, pages, read) {
-    let newBook = new Book(title, author, pages, read)
-    library.push(newBook);
-    console.table(library);
-    alert(`ADDED - Name: ${newBook.title} ; Author: ${newBook.author} ; Page: ${newBook.pages} ; Read? ${newBook.read ? 'Yes' : 'No'}`);
-}
-
+const library = []; 
+const store = window.localStorage;
+const libraryDisplay = document.querySelector('section[id="library"]');
 const addBookBtn = document.getElementById('submit-book');
-addBookBtn.addEventListener('click', () => {
-    const name = document.getElementById('enter-name').value;
-    const author = document.getElementById('enter-author').value;
-    const pages = Number(document.getElementById('enter-pages').value);
-    const readStatus = Boolean(document.querySelector('input[name="read"]:checked').value);
-    addBookToLibrary(name, author, pages, readStatus);
-});
 
-(function render() {
-    const rootElement = document.getElementById('library');
-    for (const element of library) {
-        const libraryItem = document.createElement('div');
-        const bookTitle = document.createElement('h1');
-        const bookAuthor = document.createElement('p');
-        const bookPages = document.createElement('p');
-        const bookRead = document.createElement('p');
-        libraryItem.setAttribute('class', 'library-item');
-
-        bookTitle.textContent = `Title: ${element.title}`;
-        bookAuthor.textContent = `Author: ${element.author}`;
-        bookPages.textContent = `Pages: ${String(element.pages)}`;
-        bookRead.textContent = `Read: ${String(element.read ? 'Yes': 'No')}`;
-
-        libraryItem.append(bookTitle, bookAuthor, bookPages, bookRead);
-        rootElement.appendChild(libraryItem);
+// populates library with items in local storage  but only if there's something in local storage.
+if (store.length >= 1) { 
+    for (const book of JSON.parse(store.getItem('library'))) {
+        library.push(book);
     }
-})();
+}    
 
+function populateStorage() {
+    // stores a snapshot of the current state of the library array to localStorage
+    store.setItem('library', JSON.stringify(library));
+}
+
+function render() {
+    if (store.length >= 1) {
+        for (const book of JSON.parse(store.getItem('library'))) {
+            libraryDisplay.innerHTML += `
+                <div class="library-item">
+                    <h1><span class="bold">Title:</span> ${book.title}</h1>
+                    <p><span class="bold">Author:</span> ${book.author}</p>
+                    <p><span class="bold">Pages:</span> ${book.pages}</p>
+                    <p><span class="bold">Read:</span> ${book.read}</p>
+                    <button>Delete Book</button>
+                </div>`
+        }
+    }	
+}
+
+// populateStorage();
+render();
+
+
+
+class Book {
+    constructor(title, author, pages, read) {
+        this._id = keyGen();
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
+
+    get id() {
+        return this._id;
+    }
+
+    toggleReadStatus() {
+        this.read = !this.read;
+	}
+}
+
+
+
+
+
+function addBookToLibrary(book) {
+    if (formVerify()) {
+        let book = new Book(document.getElementById('enter-name').value,
+                            document.getElementById('enter-author').value,
+                            Number(document.getElementById('enter-pages').value),
+                            Boolean(document.querySelector('input[name="read"]:checked').value));
+		library.push(book);
+    } else {
+        alert('Please fill out all the fields!');
+    }
+    console.log(library);
+    populateStorage();
+    libraryDisplay.innerHTML = '';
+    render(); 
+    document.getElementById('new-book').reset();
+}
+
+addBookBtn.addEventListener('click', addBookToLibrary);
+
+
+
+function formVerify() {
+    // prevents form with empty fields from being submitted
+    // function working as expected
+    return (document.getElementById('enter-name').value !== '' && 
+            document.getElementById('enter-author').value !== '' && 
+            document.getElementById('enter-pages').value !== '');
+} 
+
+function clearForm() {
+    document.getElementById('enter-name').value = ''; 
+    document.getElementById('enter-author').value = ''; 
+    document.getElementById('enter-pages').value = '';
+}
+
+
+
+function keyGen() {
+    // generate a key for local storage
+    return `_${Math.random().toString(36).substr(2,10)}`;
+}
