@@ -1,14 +1,7 @@
 const store = window.localStorage;
 const libraryDisplay = document.getElementById('library');
 const addBookBtn = document.getElementById('submit-book');
-const library = [
-	// {_id: '_9jc8vpxlse', title: 'Eloquent JavaScript', author: 'Marijn Haverbeke', pages: 448, read: true},
-	// {_id: '_1n9qwxnt2q', title: 'The Principles of Object Oriented JavaScript', author: 'Nicholas Zakas', pages: 122, read: true},
-	// {_id: '_smrfz2ebvs', title: 'Introduction to Algorithms', author: 'CLRS', pages: 1313, read: false},
-	// {_id: '_nbwxaexu4o', title: 'C.O.D.E' , author: 'Charles Petzold', pages: 391, read: true},
-	// {_id: '_3bdmslmvim', title: 'Composing Software', author: 'Eric Elliot', pages: 229, read: false},
-	// {_id: '_n5b2s11skq', title: 'Red Birds', author: 'Mohammad Hanif', pages: 283, read: true}
-];
+const library = [];
 
 function checkID(id) {
 	// Returns true if library contains item with the same '_id' attribute as the 'id' parameter
@@ -64,17 +57,17 @@ function Book(title, author, pages, read) {
 function formVerify() {
 	// prevents form with empty fields from being submitted
 	return (document.getElementById('enter-name').value !== '' && 
-					document.getElementById('enter-author').value !== '' && 
-					document.getElementById('enter-pages').value !== '');
+		document.getElementById('enter-author').value !== '' && 
+		document.getElementById('enter-pages').value !== '');
 } 
 
 function addBookToLibrary() {
 	if (formVerify()) { // prevents form with missing fields from being submitted
 		const read = document.getElementById('read-book');
 		const book = new Book(document.getElementById('enter-name').value,
-								 document.getElementById('enter-author').value,
-								 Number(document.getElementById('enter-pages').value),
-								 Boolean(Number(read.options[read.selectedIndex].value)));
+			document.getElementById('enter-author').value,
+			Number(document.getElementById('enter-pages').value),
+			Boolean(Number(read.options[read.selectedIndex].value)));
 		library.push(book); // add book to library
 		render(); // render updated local storage
 	} else {
@@ -94,7 +87,7 @@ function removeBookFromLibrary(index) {
 
 function findIndex(id) {
 	for (const element of library) {
-			if (id === element._id) return library.indexOf(element);
+		if (id === element._id) return library.indexOf(element);
 	}
 }
 
