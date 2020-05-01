@@ -34,12 +34,14 @@ function render() {
 	for (const book of JSON.parse(store.getItem('library'))) {
 		libraryDisplay.innerHTML += `
 			<div class="library-item">
-				<h1><span class="bold">Title:&nbsp;</span> ${book.title}</h1>
-				<p><span class="bold">Author:&nbsp;</span> ${book.author}</p>
-				<p><span class="bold">Pages:&nbsp;</span> ${book.pages}</p>
-				<p><span class="bold">Read:&nbsp;</span> ${book.read ? 'Yes' : 'No'}</p>
-				<button class="book-delete-btn" id="${findIndex(book._id)}" onClick="removeBookFromLibrary(this.id)">Delete Book</button>
-				<button id="${book._id}" onClick="changeReadStatus(this.id)">Change Read Status</button>
+				<div class="lib-itm-container">
+					<h1>Title:&nbsp; ${book.title}</h1>
+					<p>Author:&nbsp; ${book.author}</p>
+					<p>Pages:&nbsp; ${book.pages}</p>
+					<p>Read:&nbsp; ${book.read ? 'Yes' : 'No'}</p>
+					<button class="book-card-button" id="${findIndex(book._id)}" onClick="removeBookFromLibrary(this.id)">Delete Book</button>
+					<button class="book-card-button" id="${book._id}" onClick="changeReadStatus(this.id)">Change Read Status</button>
+				</div>
 			</div>`
 	}
 }
