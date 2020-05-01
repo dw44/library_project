@@ -4,17 +4,18 @@
         <meta charset="utf-8">
         <title>Library</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="./style.css">
     </head>
     <body>
         <main>
-
             <section id="add-book">
+                <h1 id="title">The Library.</h1>
+                <h2 id="form-heading">Use The Form Below To Add Books To Your Library</h2>
                 <form id="new-book" onsubmit="return false">
                     <input required id="enter-name" placeholder="Title" type="text" />
                     <input required id="enter-author" placeholder="Author" type="text" />
-                    <input required id="enter-pages" placeholder="Page Count" type="number" min="1" />
+                    <input required id="enter-pages" placeholder="Pages" type="number" min="1" />
                     <div id="read-status">
                         <select id="read-book">
                             <option value="1">Yes</option>
@@ -30,6 +31,6 @@
             </section>           
 
         </main>
-        <script src="./logic.js" /></script>
+        <script src="./logic.js"></script>
     </body>
 </html>

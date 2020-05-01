@@ -27,6 +27,8 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	background-color: #ebebeb;
+	font-family: 'Righteous', cursive;
 }
 ol, ul {
 	list-style: none;
@@ -44,7 +46,7 @@ table {
 	border-spacing: 0;
 }
 
-/* Reset ends here */
+/* BOILERPLATE / CONFIG */
 
 *, 
 *:before,
@@ -55,8 +57,7 @@ table {
 main {
 	width: 100%;
 	margin: 0 auto;
-	border: 1px solid black;
-	font-family: 'Ubuntu', sans-serif;
+	background: #fff;
 }
 
 
@@ -66,54 +67,33 @@ main {
 	}
 }
 
-/* BOOK CARDS */
+/* TITLE/HEADERS */
 
-#library {
-	text-align: center;
-	overflow: scroll;
-	height: 1000px;
-}
-
-.library-item {
-	min-width: 480px;
-	height: 240px;
-	margin: 25px;
-	border: 1px solid black;
-	display: inline-block;
-}
-
-.lib-itm-container {
+#title {
 	width: 100%;
-	height: 100%;
-	border: 2px solid navy;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-evenly;
-	align-items: center;
+	margin: 5px 0 20px 0;
+	text-align: center;
+	font-size: 50px;
 }
 
-.book-card-button {
-	border: none;
-	outline: none;
-	border-radius: 7px;
-	height: 50px;
-	width: 180px;
-	font-size: 15px;
-	font-weight: bold;
-	cursor: pointer;
-	/* margin: 20px 10px; */
-	background-color: #427ef5;
-	color: #fff;
+#form-heading {
+	width: 100%;
+	margin: 5px 0 20px 0;
+	text-align: center;
+	font-size: 20px;
 }
 
-.book-card-button:hover {
-	background-color: #0045d1;
-}
-/* ADD BOOK FORM*/
+/* ADD BOOK FORM */
 
 #add-book {
-	margin: 50px 0;
-
+	height: 280px;
+	min-width: 480px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	margin: 0;
+	padding: 20px;
+	border-bottom: 1px solid black;
 }
 
 #new-book {
@@ -126,15 +106,88 @@ form > * {
 	height: 50px;
 	display: inline-block;
 	font-size: 20px;
-	padding: 10px;
-	border: 1px solid blueviolet;
+	padding: 5px;
+	margin: 0 5px;
+	overflow: hidden;
+	border: none;
+	background-color: #eee;
+	border-radius: 10px;
+	font-family: 'Righteous', cursive;
+	flex: 1;
+}
+
+form button {
+	cursor: pointer;
+	width: 160px;
+}
+
+form button:hover {
+	background-color: #999;
+}
+
+#read-book {
+	width: 95%;
+	height: 95%;
 }
 
 #read-status {
-	/* border: 1px solid blueviolet; */
 	width: 200px;
 	display: flex;
 	justify-content: space-evenly;
 	align-items: center;
-	/* text-align: left; */
+}
+
+@media (max-width: 768px) {
+	form > * {
+		font-size: 14px;
+	}
+}
+
+/* BOOK CARDS */
+
+#library {
+	text-align: center;
+	overflow: scroll;
+	height: calc(100vh - 280px);
+}
+
+.library-item {
+	width: 480px;
+	height: 300px;
+	margin: 25px;
+	display: inline-block;
+	border-radius: 10px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.lib-itm-container {
+	width: 100%;
+	height: 100%;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	align-items: center;
+	border-radius: inherit;
+	background-color: #c00;
+	color: #fff;
+}
+
+.book-card-button {
+	border: none;
+	outline: none;
+	border-radius: 7px;
+	height: 50px;
+	width: 180px;
+	font-size: 16px;
+	cursor: pointer;
+	font-family: 'Righteous', cursive;
+	background-color: #427ef5;
+	color: #fff;
+}
+
+.book-card-button:hover {
+	background-color: #0045d1;
 }

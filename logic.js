@@ -35,7 +35,7 @@ function render() {
 		libraryDisplay.innerHTML += `
 			<div class="library-item">
 				<div class="lib-itm-container">
-					<h1>Title:&nbsp; ${book.title}</h1>
+					<p>Title:&nbsp; ${book.title}</p>
 					<p>Author:&nbsp; ${book.author}</p>
 					<p>Pages:&nbsp; ${book.pages}</p>
 					<p>Read:&nbsp; ${book.read ? 'Yes' : 'No'}</p>
