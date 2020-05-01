@@ -8,26 +8,26 @@
     </head>
     <body>
         <main>
+
             <section id="add-book">
                 <form id="new-book" onsubmit="return false">
                     <input required id="enter-name" placeholder="Title" type="text" />
                     <input required id="enter-author" placeholder="Author" type="text" />
                     <input required id="enter-pages" placeholder="Page Count" type="number" min="1" />
                     <div id="read-status">
-                        <label>Yes</label>
-                        <input type="radio" id="read-yes" name="read" value="true" />
-                        <br>
-                        <label>No</label>
-                        <input type="radio" id="read-no" name="read" value="false" checked />
+                        <select id="read-book">
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
                     </div>
                     <button id="submit-book">Submit Book</button>
-                    <!-- <button id="show-store">Show Storage</button> -->
                 </form>
             </section>
             
             <section id="library">
                 <!-- Book cards go here -->
-            </section>            
+            </section>           
+
         </main>
         <script src="./logic.js" /></script>
     </body>
